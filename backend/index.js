@@ -5,12 +5,8 @@ const cors = require("cors");
 const Movie = require('./movies');
 const cache = require('./cache');
 const responseTime = require('response-time');
-const redis = require('redis');
-const axios = require('axios');
-
 const movieModule = new Movie();
 const cacheModule = new cache()
-const client = redis.createClient();
 
 app.use(cors());
 app.use(responseTime());
@@ -36,6 +32,19 @@ app.get('/api/search', async (req, res) => {
   } catch (error) {
     return res.json({});
   }
+});
+
+/**
+ * api to clean cache
+ */
+app.get('/api/clear', (req, res) => {
+  cacheModule.client.flushdb((err, succeeded) => {
+    if(err) {
+      res.send(err);
+    } else {
+      res.send(succeeded);
+    }
+  });
 });
 
 
