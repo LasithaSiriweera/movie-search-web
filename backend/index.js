@@ -3,21 +3,40 @@ const app = express()
 const port = 3001
 const cors = require("cors");
 const Movie = require('./movies');
+const cache = require('./cache');
+const responseTime = require('response-time');
+const redis = require('redis');
+const axios = require('axios');
 
 const movieModule = new Movie();
+const cacheModule = new cache()
+const client = redis.createClient();
 
 app.use(cors());
+app.use(responseTime());
 
+/**
+ * search movies api function
+ */
 app.get('/api/search', async (req, res) => {
-    try {
-        const keyWord = req.query.keyWord;
+  try {
+    const keyWord = req.query.keyWord;
+    return cacheModule.client.get(keyWord, async (err, result) => {
+      if (result) {
         const movies = await movieModule.searchMovies(keyWord);
+        cacheModule.setCache(keyWord, movies);
+        const resultJSON = JSON.parse(result);
+        return res.json(resultJSON.data);
+      } else {
+        const movies = await movieModule.searchMovies(keyWord);
+        cacheModule.setCache(keyWord, movies);
         return res.json(movies);
-    } catch (error) {
-        return res.json({});
-    }
+      }
+    });
+  } catch (error) {
+    return res.json({});
+  }
 });
-
 
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
