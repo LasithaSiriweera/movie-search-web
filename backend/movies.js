@@ -25,7 +25,7 @@ function movieModule() {
     getMoviesByName = async (keyWord, page) => {
         try {
             let data = [];
-            const dataSnap = await axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=83f14c69&s=' + keyWord + '&page' + page);
+            const dataSnap = await axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=83f14c69&s=' + keyWord + '&page=' + page);
             if (dataSnap && dataSnap.data && dataSnap.data.Search) {
                 data = dataSnap.data.Search;
             }
