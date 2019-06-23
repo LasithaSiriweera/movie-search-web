@@ -19,8 +19,6 @@ app.get('/api/search', async (req, res) => {
     const keyWord = req.query.keyWord;
     return cacheModule.client.get(keyWord, async (err, result) => {
       if (result) {
-        const movies = await movieModule.searchMovies(keyWord);
-        cacheModule.setCache(keyWord, movies);
         const resultJSON = JSON.parse(result);
         return res.json(resultJSON.data);
       } else {
