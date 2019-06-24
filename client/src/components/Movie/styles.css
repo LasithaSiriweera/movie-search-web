@@ -1,0 +1,18 @@
+.Movie {
+    width: 23%;
+    margin: 5%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .movie-img {
+    width: 100%;
+  }
+  
+
+  @media screen and (max-width: 768px) {
+    .Movie {
+      width: 30%;
+      margin: 10%;
+    }
+  }

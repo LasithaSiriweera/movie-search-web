@@ -1,0 +1,19 @@
+.search-bar {
+    display: flex;
+    width: 100%;
+    max-width: 2024px;
+    justify-content: center;
+    margin-top: 50px;
+}
+  
+.search-input {
+    height: 25px;
+    width: 30%;
+}
+
+@media screen and (max-width: 768px) {
+    .search-input {
+      width: 50%;
+      margin: 10%;
+    }
+}

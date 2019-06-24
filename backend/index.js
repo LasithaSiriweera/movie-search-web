@@ -16,7 +16,8 @@ app.use(responseTime());
  */
 app.get('/api/search', async (req, res) => {
   try {
-    const keyWord = req.query.keyWord;
+    const keyWord = req.query.keyword;
+    // check whether cache is exist
     return cacheModule.client.get(keyWord, async (err, result) => {
       if (result) {
         const resultJSON = JSON.parse(result);
