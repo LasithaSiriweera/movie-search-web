@@ -9,7 +9,7 @@ class Movie extends Component {
     render() {
         return (
             <div className="Movie">
-                <img key={'img-' + this.props.id} className="movie-img" src={this.props.imgUrl} alt="My Awesome Image"/>
+                <img key={'img-' + this.props.id} className="movie-img" src={this.props.imgUrl} alt="My Awesome Image" />
                 <p>{this.props.title}</p>
             </div>
         );
