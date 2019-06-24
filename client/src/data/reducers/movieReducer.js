@@ -2,7 +2,8 @@
 import * as types from '../actions/actionTypes';
 
 let initialState = {
-    movies: []
+    movies: [],
+    isLoading: false
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const moviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 movies: action.movies,
+            };
+        case types.SET_LOADING:
+            return {
+                ...state,
+                isLoading: action.isLoading,
             };
         default:
             return state;

@@ -1,17 +1,29 @@
 .Movie {
-    width: 23%;
-    margin: 5%;
-    text-align: center;
-    justify-content: center;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 22%;
+  margin: 5%;
+  justify-content: space-around;
+  font-size: 14px;
+  color: #022549;
+  border: 2px solid #022549;
+}
 
-  .movie-img {
-    width: 100%;
+.movie-img {
+  margin-top: 5%;
+  align-self: center;
+  justify-content: flex-start;
+  width: 90%;
+}
+
+.movie-title{
+  justify-self: flex-end;
+}
+
+@media screen and (max-width: 768px) {
+  .Movie {
+    width: 30%;
+    margin: 8%;
+    font-size: 10px;
   }
-  
-  @media screen and (max-width: 768px) {
-    .Movie {
-      width: 30%;
-      margin: 10%;
-    }
-  }
+}

@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import './styles.css';
+import defaultImage from '../../assets/imgs/default-movie.jpg'
 
 class Movie extends Component {
 
-    componentDidMount() { }
+    constructor(props) {
+        super(props);
+        this.state = {
+            imgUrl: 'N/A'
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            imgUrl: this.props.imgUrl
+        });
+    }
+
+    /**
+     * Handle image loading error
+     */
+    onError() {
+        this.setState({
+            imgUrl: defaultImage
+        });
+    }
 
     render() {
         return (
             <div className="Movie">
-                <img key={'img-' + this.props.id} className="movie-img" src={this.props.imgUrl} alt="My Awesome Image" />
-                <p>{this.props.title}</p>
-            </div>
+                <img key={'img-' + this.props.id} className="movie-img" src={this.state.imgUrl} onError={this.onError.bind(this)} alt="Movie Poster not loaded"/>
+                <p className="movie-title">{this.props.title}</p>
+            </div >
         );
     }
 }

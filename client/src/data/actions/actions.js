@@ -7,3 +7,10 @@ export function setMovies(movies) {
         movies: movies
     };
 }
+
+export function setLoading(state) {
+    return {
+        type: types.SET_LOADING,
+        isLoading: state
+    };
+}
