@@ -8,17 +8,18 @@ import ReactLoading from 'react-loading';
 class MovieList extends Component {
 
     render() {
-        let movies = []
+        const movies = [];
+        let count = 0;
         _.forEach(this.props.movies, function (movie) {
-            const timestamp = Date.now();
             movies.push(
                 <Movie
-                    key={movie.imdbID + timestamp}
+                    key={movie.imdbID + count}
                     imgUrl={movie.Poster}
                     title={movie.Title}
-                    id={movie.imdbID}
+                    id={movie.imdbID + count}
                 />
             )
+            count++;
         });
         if (this.props.isLoading) {
             return (
