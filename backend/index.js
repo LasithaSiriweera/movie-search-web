@@ -19,17 +19,20 @@ app.get('/api/search', async (req, res) => {
     const keyWord = req.query.keyword;
     // check whether cache is exist
     return cacheModule.client.get(keyWord, async (err, result) => {
+      let responseArr = []
       if (result) {
         const resultJSON = JSON.parse(result);
-        return res.json(resultJSON.data);
+        responseArr = resultJSON.data;
       } else {
         const movies = await movieModule.searchMovies(keyWord);
         cacheModule.setCache(keyWord, movies);
-        return res.json(movies);
+        responseArr = movies;
       }
+      res.set('Cache-Control', 'max-age=30');
+      return res.json(responseArr);
     });
   } catch (error) {
-    return res.json({});
+    return res.json([]);
   }
 });
 
