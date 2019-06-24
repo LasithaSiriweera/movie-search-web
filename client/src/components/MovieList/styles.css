@@ -1,23 +1,25 @@
 .Movies {
     display: flex;
     width: 100%;
+    max-width: 2024px;
     flex-wrap: wrap;
-    align-content: space-between;
-  }
+    align-content: space-around;
+    align-self: center;
+}
 
-  .Loading {
+.Loading {
     display: flex;
     width: 100%;
     height: 100vh;
     justify-content: center;
-  } 
+}
 
-  .spin {
+.spin {
     margin-top: 20%
-  }
+}
 
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .spin {
-      margin-top: 30%
+        margin-top: 30%
     }
 }
