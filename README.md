@@ -32,7 +32,11 @@ I have spent about 17 hours for the project
 
 # Installation
 
-### `docker-compose up --build` 
+Open project director
+
+rename the file env_dummy to .env if .env file not exist
+
+### `docker-compose up --build`
 This will start server and React app
 You can access react app using http://localhost:3000/
 
