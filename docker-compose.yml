@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+
+        # Install redis server
+        redis-server:
+                image: 'redis'
+                container_name: movie-redis
+
+        # Backend server setup
+        server:
+                build: ./backend
+                expose:
+                        - ${APP_SERVER_PORT}
+                environment:
+                        API_HOST: ${API_HOST}
+                        APP_SERVER_PORT: ${APP_SERVER_PORT}
+                ports:
+                        - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+                volumes:
+                        - ./backend:/srv/app/movie-search-server/src
+
+        # Client application setup
+        client:
+                build: ./client
+                expose:
+                        - ${APP_SERVER_PORT}
+                environment:
+                        REACT_APP_PORT: ${REACT_APP_PORT}
+                ports:
+                        - ${REACT_APP_PORT}:${REACT_APP_PORT}
+                volumes:
+                        - ./client/src:/srv/app/movie-search-client/src
+                        - ./client/public:/srv/app/movie-search-client/public
+                links:
+                        - server
