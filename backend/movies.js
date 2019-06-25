@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require('axios');
 
 function movieModule() {
@@ -20,7 +21,7 @@ function movieModule() {
     /**
      * get movies using key word
      * @param name 
-     * @param page 
+     * @param page
      */
     getMoviesByName = async(keyWord, page) => {
         try {

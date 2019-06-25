@@ -17,6 +17,8 @@ services:
                         APP_SERVER_PORT: ${APP_SERVER_PORT}
                 ports:
                         - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+                env_file:
+                        - .env
                 volumes:
                         - ./backend:/srv/app/movie-search-server/src
 
