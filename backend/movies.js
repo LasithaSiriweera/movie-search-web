@@ -1,4 +1,5 @@
 const axios = require('axios');
+const config = require('./config');
 
 function movieModule() {
 
@@ -25,7 +26,7 @@ function movieModule() {
     getMoviesByName = async(keyWord, page) => {
         try {
             let data = [];
-            const dataSnap = await axios.get(`http://www.omdbapi.com/?apikey=83f14c69&s=${keyWord}&page=${page}`);
+            const dataSnap = await axios.get(`${config.omdb_url}/?apikey=${config.omdb_api_key}&s=${keyWord}&page=${page}`);
             if (dataSnap && dataSnap.data && dataSnap.data.Search) {
                 data = dataSnap.data.Search;
             }

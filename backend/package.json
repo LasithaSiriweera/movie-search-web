@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index"
+        "start": "nodemon --exec babel-node index.js",
+        "test": "jest"
     },
     "author": "",
     "license": "ISC",
@@ -16,5 +16,14 @@
         "express": "^4.17.1",
         "redis": "^2.8.0",
         "response-time": "^2.3.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.5",
+        "@babel/node": "^7.4.5",
+        "@babel/preset-env": "^7.4.5",
+        "babel-jest": "^24.8.0",
+        "nodemon": "^1.19.1",
+        "eslint": "^5.16.0",
+        "jest": "24.7.1"
     }
 }

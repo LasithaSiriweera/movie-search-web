@@ -1,4 +1,5 @@
 const redis = require('redis');
+const config = require('./config');
 
 function cacheModule() {
 
@@ -7,7 +8,7 @@ function cacheModule() {
      */
     this.client = redis.createClient({
         host: 'redis-server',
-        port: process.env.REDIS_PORT
+        port: config.redis_port
     });
 
     /**
