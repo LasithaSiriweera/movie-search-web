@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Movie from '../Movie';
-import * as _ from 'lodash';
 import './styles.css';
 import ReactLoading from 'react-loading';
 
 class MovieList extends Component {
 
+    renderMovieList() {
+        if (this.props.movies && this.props.movies.length) {
+            return (
+                this.props.movies.map((movie, index) =>
+                    <Movie
+                        key={movie.imdbID + index}
+                        imgUrl={movie.Poster}
+                        title={movie.Title}
+                        id={movie.imdbID + index}
+                    />)
+            );
+        } else {
+            return null;
+        }
+    }
+
     render() {
-        const movies = [];
-        let count = 0;
-        _.forEach(this.props.movies, function (movie) {
-            movies.push(
-                <Movie
-                    key={movie.imdbID + count}
-                    imgUrl={movie.Poster}
-                    title={movie.Title}
-                    id={movie.imdbID + count}
-                />
-            )
-            count++;
-        });
         if (this.props.isLoading) {
             return (
                 <div className="Loading">
@@ -36,7 +38,7 @@ class MovieList extends Component {
         } else {
             return (
                 <div className="Movies">
-                    {movies}
+                    {this.renderMovieList()}
                 </div>
             );
         }
