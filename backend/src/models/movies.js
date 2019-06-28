@@ -9,9 +9,8 @@ class Movies {
      */
     async searchMovies(keyWord) {
         try {
-            const page1 = await this.getMoviesByName(keyWord, 1);
-            const page2 = await this.getMoviesByName(keyWord, 2);
-            const movies = page1.concat(page2);
+            const data = await Promise.all([this.getMoviesByName(keyWord, 1),this.getMoviesByName(keyWord, 2)]);
+            const movies = data.reduce((resArry, arr) => { return resArry.concat(arr); }, []);
             return movies;
         } catch (error) {
             throw error;
@@ -19,7 +18,7 @@ class Movies {
     }
 
     /**
-     * get movies using key word
+     * get movies using keyword
      * @param name 
      * @param page
      */

@@ -3,7 +3,7 @@ import config from '../config';
 
 const client = redis.createClient({
     host: 'redis-server',
-    port: process.env.REDIS_PORT
+    port: config.redis_port
 });
 
 const RedisCache = {
