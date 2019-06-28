@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import * as actions from '../../data/actions/actions';
+import { debounce } from 'lodash'
 import './styles.css';
 
 class SearchBar extends Component {
-    timeout;
 
-    onChangedKeyWord = async (event) => {
-        const keyword = event.target.value;
+    /**
+     * start searching movies after 300 milliseconds
+     */
+    searchMovies = debounce((keyWord) => {
+        this.props.setLoading(true);
+        this.props.fetchMovies(keyWord);
+    }, 300);
+
+    onChangedKeyWord = (event) => {
+        const keyWord = event.target.value;
         this.props.setError(null);
-        if (keyword && keyword.length >= 3) {
-            clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-                this.props.setLoading(true);
-                this.props.fetchMovies(keyword);
-            }, 300);
+        if (keyWord && keyWord.length >= 3) {
+            this.searchMovies(keyWord);
         } else {
             this.props.setMovies([]);
         }
