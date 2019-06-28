@@ -23,24 +23,33 @@ class MovieList extends Component {
     }
 
     render() {
-        if (this.props.isLoading) {
+        
+        if(this.props.error) {
             return (
-                <div className="Loading">
-                    <ReactLoading
-                        className="spin"
-                        type={'spin'}
-                        color={'#022549'}
-                        height={'10%'}
-                        width={'10%'}
-                    />
+                <div>
+                    <p className="errorText">{this.props.error.msg}</p>
                 </div>
-            );
-        } else {
-            return (
-                <div className="Movies">
-                    {this.renderMovieList()}
-                </div>
-            );
+            )
+        }else {
+            if (this.props.isLoading) {
+                return (
+                    <div className="Loading">
+                        <ReactLoading
+                            className="spin"
+                            type={'spin'}
+                            color={'#022549'}
+                            height={'10%'}
+                            width={'10%'}
+                        />
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="Movies">
+                        {this.renderMovieList()}
+                    </div>
+                );
+            }      
         }
     }
 }
@@ -48,7 +57,8 @@ class MovieList extends Component {
 const mapStateToProps = state => {
     return {
         movies: state.moviesReducer.movies,
-        isLoading: state.moviesReducer.isLoading
+        isLoading: state.moviesReducer.isLoading,
+        error: state.moviesReducer.error
     };
 };
 

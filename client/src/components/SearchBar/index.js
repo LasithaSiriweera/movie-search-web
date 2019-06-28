@@ -1,40 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import * as actions from '../../data/actions/actions';
-import axios from 'axios';
 import './styles.css';
 
 class SearchBar extends Component {
     timeout;
 
     onChangedKeyWord = async (event) => {
-        try {
-            const keyword = event.target.value;
-            if (keyword && keyword.length >= 3) {
-                clearTimeout(this.timeout);
-                this.timeout = setTimeout(() => {
-                    this.fetchMoviesByKeyWord(keyword);
-                }, 300);
-            } else {
-                this.props.setMovies([]);
-            }
-        } catch (error) {
+        const keyword = event.target.value;
+        this.props.setError(null);
+        if (keyword && keyword.length >= 3) {
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                this.props.setLoading(true);
+                this.props.fetchMovies(keyword);
+            }, 300);
+        } else {
             this.props.setMovies([]);
-        }
-    }
-
-    /**
-     * Fetch movies using key word
-     */
-    fetchMoviesByKeyWord = async (keyword) => {
-        try {
-            this.props.setLoading(true);
-            const movies = await axios.get(`http://localhost:3001/api/search?keyword=${keyword}`);
-            this.props.setMovies(movies.data);
-            this.props.setLoading(false);
-        } catch (error) {
-            this.props.setMovies([]);
-            this.props.setLoading(false);
         }
     }
 
@@ -51,13 +33,16 @@ class SearchBar extends Component {
 const mapStateToProps = state => {
     return {
         movies: state.moviesReducer.movies,
-        isLoading: state.moviesReducer.isLoading
+        isLoading: state.moviesReducer.isLoading,
+        error: state.moviesReducer.error,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         setMovies: (movies) => dispatch(actions.setMovies(movies)),
+        setError: (error) => dispatch(actions.setError(error)),
+        fetchMovies: (keyWord) => dispatch(actions.fetchMovies(keyWord)),
         setLoading: (state) => dispatch(actions.setLoading(state)),
     };
 };

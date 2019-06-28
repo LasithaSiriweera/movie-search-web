@@ -18,6 +18,11 @@ const moviesReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.isLoading,
             };
+        case types.SET_ERROR:
+            return {
+                ...state,
+                error: action.error,
+            };
         default:
             return state;
     }
