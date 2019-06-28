@@ -1,16 +1,16 @@
-const axios = require('axios');
-const config = require('./config');
+import axios from 'axios';
+import config from '../config';
 
-function movieModule() {
+class Movies {
 
     /**
      * search movies
      * @param keyWord 
      */
-    this.searchMovies = async(keyWord) => {
+    async searchMovies(keyWord) {
         try {
-            const page1 = await getMoviesByName(keyWord, 1);
-            const page2 = await getMoviesByName(keyWord, 2);
+            const page1 = await this.getMoviesByName(keyWord, 1);
+            const page2 = await this.getMoviesByName(keyWord, 2);
             const movies = page1.concat(page2);
             return movies;
         } catch (error) {
@@ -23,7 +23,7 @@ function movieModule() {
      * @param name 
      * @param page
      */
-    getMoviesByName = async(keyWord, page) => {
+    async getMoviesByName(keyWord, page) {
         try {
             let data = [];
             const dataSnap = await axios.get(`${config.omdb_url}/?apikey=${config.omdb_api_key}&s=${keyWord}&page=${page}`);
@@ -35,7 +35,6 @@ function movieModule() {
             return [];
         }
     }
-
 }
 
-module.exports = movieModule;
+export default new Movies();

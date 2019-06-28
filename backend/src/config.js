@@ -1,5 +1,6 @@
-require('dotenv').config({ path: '../.env' });
-module.exports = {
+require("dotenv").config({ path: "../.env" });
+
+export default {
     server_port: process.env.APP_SERVER_PORT,
     redis_port: process.env.REDIS_PORT,
     omdb_url: process.env.OMDB_URL,

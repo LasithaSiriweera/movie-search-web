@@ -20,7 +20,7 @@ services:
                 env_file:
                         - .env
                 volumes:
-                        - ./backend:/srv/app/movie-search-server/src
+                        - ./backend/src:/srv/app/movie-search-server/src
 
         # Client application setup
         client:
