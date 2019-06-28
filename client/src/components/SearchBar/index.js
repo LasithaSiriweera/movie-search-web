@@ -26,9 +26,9 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div className="search-bar">
-                <h2 className="title">Search Movies</h2>
-                <input className="search-input" placeholder="Key Word" onChange={(event) => { this.onChangedKeyWord(event) }}></input>
+            <div className="search">
+                <h2 className="search__title">Search Movies</h2>
+                <input className="search__input" placeholder="Key Word" onChange={(event) => { this.onChangedKeyWord(event) }}></input>
             </div>
         );
     }

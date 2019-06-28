@@ -1,29 +1,36 @@
-.Movies {
+.movie-list {
     display: flex;
     width: 100%;
-    max-width: 2024px;
+    max-width: 1920px;
+}
+
+.movie-list--loaded {
     flex-wrap: wrap;
     align-content: space-around;
     align-self: center;
 }
 
-.Loading {
-    display: flex;
-    width: 100%;
+.movie-list--loading {
     height: 100vh;
     justify-content: center;
 }
 
-.spin {
+.movie-list--error {
+    justify-content: center;
+}
+
+
+.movie-list__spin {
     margin-top: 20%
 }
 
-.errorText {
-    margin-top: 30%
+.movie-list__error-text {
+    text-align: center;
+    margin-top: 10%;
 }
 
 @media screen and (max-width: 768px) {
-    .spin {
-        margin-top: 30%
+    .movie-list__spin {
+        margin-top: 30%;
     }
 }

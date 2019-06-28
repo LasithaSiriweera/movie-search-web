@@ -29,9 +29,9 @@ class Movie extends Component {
 
     render() {
         return (
-            <div className="Movie">
-                <img key={'img-' + this.props.id} className="movie-img" src={this.state.imgUrl} onError={this.onError.bind(this)} alt="Movie Poster not loaded"/>
-                <p className="movie-title">{this.props.title}</p>
+            <div className="movie">
+                <img key={'img-' + this.props.id} className="movie__img" src={this.state.imgUrl} onError={this.onError.bind(this)} alt="Movie Poster not loaded"/>
+                <p className="movie__title">{this.props.title}</p>
             </div >
         );
     }

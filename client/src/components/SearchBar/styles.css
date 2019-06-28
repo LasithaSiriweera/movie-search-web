@@ -1,4 +1,4 @@
-.search-bar {
+.search {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -9,23 +9,23 @@
     color: antiquewhite
 }
   
-.search-input {
+.search__input {
     height: 25%;
     width: 30%;
     padding-left: 5px;
     border: 1px solid #222214;
 }
 
-.title {
+.search__title {
     margin-top: 0;
 }
 
 @media screen and (max-width: 768px) {
-    .search-input {
+    .search__input {
       width: 50%;
     }
 
-    .search-bar {
+    .search {
         height: 150px;
     }
 }

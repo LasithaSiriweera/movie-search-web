@@ -26,16 +26,16 @@ class MovieList extends Component {
         
         if(this.props.error) {
             return (
-                <div>
-                    <p className="errorText">{this.props.error.msg}</p>
+                <div className="movie-list movie-list--error">
+                    <p className="movie-list__error-text">{this.props.error.msg}</p>
                 </div>
             )
         }else {
             if (this.props.isLoading) {
                 return (
-                    <div className="Loading">
+                    <div className="movie-list movie-list--loading">
                         <ReactLoading
-                            className="spin"
+                            className="movie-list__spin"
                             type={'spin'}
                             color={'#022549'}
                             height={'10%'}
@@ -45,7 +45,7 @@ class MovieList extends Component {
                 );
             } else {
                 return (
-                    <div className="Movies">
+                    <div className="movie-list movie-list--loaded">
                         {this.renderMovieList()}
                     </div>
                 );
