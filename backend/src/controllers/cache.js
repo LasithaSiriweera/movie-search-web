@@ -1,7 +1,10 @@
 import redis from 'redis';
 import config from '../config';
 
-const client = redis.createClient();
+const client = redis.createClient({
+    host: 'redis-server',
+    port: config.redis_port
+});
 
 const RedisCache = {
 
