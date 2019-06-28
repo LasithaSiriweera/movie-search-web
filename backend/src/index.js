@@ -15,7 +15,7 @@ app.use(responseTime());
 app.use('/api', routers);
 
 app.get('/', (req, res) => {
-    return res.status(200).send({ 'message': "Serve is working!!" });
+    return res.status(200).send({ 'message': "Server is working!!" });
 })
 
 

@@ -12,6 +12,4 @@ router.get('/clear', RedisCache.flushAllCache, (req, res) => {
     res.send(res);
 });
 
-
-
 export default router;
