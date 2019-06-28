@@ -5,7 +5,6 @@ var router = express.Router();
 
 
 router.get('/search', Movies.validateKeyWord, RedisCache.getDataFromCache, Movies.getMoviesFromApi, (req, res) => {
-    res.set('Cache-Control', 'max-age=30');
     res.status(200).json(res.locals.response);
 });
 

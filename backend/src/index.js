@@ -4,11 +4,11 @@ import responseTime from 'response-time';
 import config from './config';
 import routers from './routes/index';
 
-const app = express()
+const app = express();
 const port = config.server_port;
 
 
-app.use(express.json())
+app.use(express.json());
 app.use(cors());
 app.use(responseTime());
 
@@ -19,4 +19,4 @@ app.get('/', (req, res) => {
 })
 
 
-app.listen(port, () => console.log(`app listening on port ${port}!`))
+app.listen(port, () => console.log(`app listening on port ${port}!`));

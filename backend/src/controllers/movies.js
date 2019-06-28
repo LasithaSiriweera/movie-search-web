@@ -11,12 +11,14 @@ const Movies = {
     async getMoviesFromApi(req, res) {
         try {
             const movies = await MoviesModel.searchMovies(req.query.keyword);
-            RedisCache.setCache(req.query.keyword, movies);
+            if (movies.length > 0) {
+                RedisCache.setCache(req.query.keyword, movies);
+            }
+            res.set('Cache-Control', 'max-age=30');
             res.status(200).json(movies);
         } catch (error) {
-            res.status(400).send({ 'message': 'Internal Server Error' })
+            res.status(504).send({ 'message': 'Internal Server Error' });
         }
-
     },
 
     /**
@@ -30,10 +32,10 @@ const Movies = {
             if (req.query.keyword) {
                 return next();
             } else {
-                res.status(400).send({ 'message': 'Bad request' })
+                res.status(400).send({ 'message': 'Bad request' });
             }
         } catch (error) {
-            res.status(400).send({ 'message': 'Internal Server Error' })
+            res.status(504).send({ 'message': 'Internal Server Error' });
         }
     }
 }

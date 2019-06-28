@@ -14,7 +14,7 @@ class Movies {
             const movies = page1.concat(page2);
             return movies;
         } catch (error) {
-            return [];
+            throw error;
         }
     }
 
@@ -32,7 +32,7 @@ class Movies {
             }
             return data;
         } catch (error) {
-            return [];
+            throw error;
         }
     }
 }

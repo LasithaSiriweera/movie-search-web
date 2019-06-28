@@ -3,7 +3,7 @@ import config from '../config';
 
 const client = redis.createClient({
     host: 'redis-server',
-    port: config.omdb_api_key
+    port: process.env.REDIS_PORT
 });
 
 const RedisCache = {
@@ -15,8 +15,7 @@ const RedisCache = {
      * @param next 
      */
     getDataFromCache(req, res, next) {
-        const keyWord = (req.query && req.query.keyword) ? req.query.keyword : null;
-        client.get(keyWord, (err, result) => {
+        client.get(req.query.keyword, (err, result) => {
             if (err) {
                 return next();
             } else {
@@ -24,7 +23,7 @@ const RedisCache = {
                     return next();
                 } else {
                     const resultJSON = JSON.parse(result);
-                    res.status(400).send(resultJSON.data);
+                    res.status(200).send(resultJSON.data);
                 }
             }
         });
@@ -38,7 +37,7 @@ const RedisCache = {
     flushAllCache(req, res) {
         client.flushdb((err, succeeded) => {
             if (err) {
-                res.status(400).send(err);
+                res.status(504).send(err);
             } else {
                 res.status(200).send(succeeded);
             }
@@ -51,7 +50,7 @@ const RedisCache = {
      * @param data 
      */
     setCache(key, data) {
-        client.setex(key, 3600, JSON.stringify({ source: 'Redis Cache', data: data, }));
+        client.set(key, JSON.stringify({ source: 'Redis Cache', data: data, }));
     }
 }
 
