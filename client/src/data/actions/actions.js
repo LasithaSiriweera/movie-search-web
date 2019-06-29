@@ -29,7 +29,7 @@ export const setLoading = (state) => {
 export const fetchMovies = (keyWord) => {
     return async dispatch => {
         try {
-            const result = await axios.get(`http://localhost:3001/api/search?keyword=${keyWord}`);
+            const result = await axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/api/search?keyword=${keyWord}`);
             if (result && result.data && result.data.length > 0) {
                 dispatch(setMovies(result.data));
                 dispatch(setLoading(false));

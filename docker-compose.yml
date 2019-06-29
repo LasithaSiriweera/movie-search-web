@@ -11,11 +11,12 @@ services:
         server:
                 build: ./backend
                 expose:
-                        - ${APP_SERVER_PORT}
+                        - ${REACT_APP_SERVER_PORT}
                 environment:
-                        APP_SERVER_PORT: ${APP_SERVER_PORT}
+                        API_HOST: ${API_HOST}
+                        REACT_APP_SERVER_PORT: ${REACT_APP_SERVER_PORT}
                 ports:
-                        - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+                        - ${REACT_APP_SERVER_PORT}:${REACT_APP_SERVER_PORT}
                 env_file:
                         - .env
                 volumes:
@@ -27,11 +28,13 @@ services:
         client:
                 build: ./client
                 expose:
-                        - ${APP_SERVER_PORT}
+                        - ${REACT_APP_PORT}
                 environment:
                         REACT_APP_PORT: ${REACT_APP_PORT}
                 ports:
                         - ${REACT_APP_PORT}:${REACT_APP_PORT}
+                env_file:
+                        - .env
                 volumes:
                         - ./client/src:/srv/app/movie-search-client/src
                         - ./client/public:/srv/app/movie-search-client/public
