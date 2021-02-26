@@ -1,8 +1,6 @@
 # Introduction
 This is a simple web application to search movies using movie names. When user types a keyword in search box all related movies are listed down below.
 
-
-
 # Solution
 
 As a solution i implemented web application to retrieve movies. There two components of there project.
@@ -16,25 +14,11 @@ The server implemented using Node js and Express framework. Server provides two 
 The react application used in client side which prompts users to type keywords and retrieve movies. In this app redux is used to handle global state because several components used in app.
 
 
-
-# Decisions
-
 ## Node Express framework for back-end
 Express is a minimal and flexible Node.js web application framework. And it's very fast and easy to develop. 
 
 ## Redis for cache handling
 Redis provides a structured way to store data in memory. Therefore it's very easy to handle data and Redis performs very fast.
-
-# Future Work for production ready
-
-Proper UI design is the most important thing for the user interaction. So if i had more time, i will try to enhance the UI with better user experience using reusable UI components. Better loading and error messages will be implemented. And use better css convention for maintainability.
-
-When we build production ready application it must be a Bug-free product. So i will implement unit tests for each every function in backend and frontend.
-
-Way to categorize errors and display errors in properly instead of display simple error message in frontend is important for better user experience.
-
-Performance testing is very important when go production ready. Therefore i'll do performance testing and optimize the application according to test result.
-
 
 
 # Installation
