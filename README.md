@@ -25,13 +25,6 @@ Express is a minimal and flexible Node.js web application framework. And it's ve
 ## Redis for cache handling
 Redis provides a structured way to store data in memory. Therefore it's very easy to handle data and Redis performs very fast.
 
-
-
-# Time spent for the project
-I have spent about 17 hours for the project
-
-
-
 # Future Work for production ready
 
 Proper UI design is the most important thing for the user interaction. So if i had more time, i will try to enhance the UI with better user experience using reusable UI components. Better loading and error messages will be implemented. And use better css convention for maintainability.
